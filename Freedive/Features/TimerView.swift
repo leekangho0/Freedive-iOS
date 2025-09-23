@@ -67,20 +67,26 @@ extension TimerView {
     func stopTimer() {
         timerTask?.cancel()
         timerTask = nil
+        hangDate = nil  // Clear hangDate when timer is stopped
     }
 
     func handlePhase(_ phase: ScenePhase) {
         switch phase {
         case .background:
-            hangDate = Date()
-            isRunning = false
+            // Only set hangDate if timer is currently running
+            if isRunning {
+                hangDate = Date()
+                isRunning = false
+            }
         case .inactive: break
         case .active:
+            // Only restart timer if it was running when it went to background
             if let hangDate {
                 let current = Date()
                 let elapsed = current.timeIntervalSince(hangDate)
                 elapsedTime += TimeInterval(Int(elapsed))
                 isRunning = true
+                self.hangDate = nil  // Clear hangDate after processing
             }
         @unknown default:
             precondition(false)
