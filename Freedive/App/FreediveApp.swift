@@ -13,7 +13,7 @@ struct FreediveApp: App {
 
     var body: some Scene {
         WindowGroup {
-            TimerView()
+            MainTabView()
 //            ContentView()
 //                .environment(\.managedObjectContext, persistenceController.container.viewContext)
         }
