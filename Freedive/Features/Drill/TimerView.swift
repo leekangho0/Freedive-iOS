@@ -41,8 +41,13 @@ struct TimerView: View {
                             state = .resume
                         }
                     } label: {
-                        Text(state == .resume ? "Pause" : "Resume")
-                            .frame(width: 70, height: 50)
+                        HStack {
+                            Image(systemName: state == .stop ? "play.fill"
+                                  : (state == .resume
+                                  ? "pause.fill" : "play"))
+                            Text(state == .stop ? "Start" : (state == .resume ? "Pause" : "Resume"))
+                        }
+                            .frame(width: 100, height: 50)
                     }
 
                     if state != .stop {
@@ -51,8 +56,11 @@ struct TimerView: View {
                                 state = .stop
                             }
                         } label: {
-                            Text("Stop")
-                                .frame(width: 70, height: 50)
+                            HStack {
+                                Image(systemName: "square.fill")
+                                Text("Stop")
+                            }
+                                .frame(width: 100, height: 50)
                         }
                         .tint(.red)
                     }
@@ -81,6 +89,7 @@ struct TimerView: View {
         .onDisappear {
         }
         .navigationTitle("Drill")
+        .navigationBarTitleDisplayMode(.large)
     }
 }
 
