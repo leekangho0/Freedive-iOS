@@ -17,6 +17,6 @@ jobs:
     - uses: actions/checkout@v4
     - name: XCode Build
       run: |
-        xcodebuild clean test -project Freedive/Freedive.xcodeproj -scheme Freedive -destination 'platform=iOS Simulator, name=iPhone 16 Pro, OS=17.0'
+        xcodebuild clean test -project Freedive/Freedive.xcodeproj -scheme Freedive -destination 'platform=iOS Simulator, name=iPhone 16 Pro, OS=18.2'
     - name: Run tests
       run: swift test -v
